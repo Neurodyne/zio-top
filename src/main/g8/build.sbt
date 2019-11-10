@@ -1,4 +1,4 @@
-val ZioVersion       = "1.0.0-RC15"
+val ZioVersion       = "1.0.0-RC16"
 val ZioCatsVersion   = "2.0.0.0-RC6"
 val Specs2Version    = "4.8.0"
 val ScalaTestVersion = "3.2.0-M1"
@@ -26,13 +26,12 @@ lazy val root = (project in file("."))
     )
   )
 
-testFrameworks := Seq(new TestFramework("zio.test.sbt.ZTestFramework"))
+testFrameworks += Seq(new TestFramework("zio.test.sbt.ZTestFramework"))
 
 // Refine scalac params from tpolecat
 scalacOptions --= Seq(
   "-Xfatal-warnings"
 )
-addCompilerPlugin(scalafixSemanticdb)
 addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
 
 // Aliases
