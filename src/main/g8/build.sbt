@@ -1,7 +1,7 @@
-val ZioVersion       = "1.0.0-RC16"
-val ZioCatsVersion   = "2.0.0.0-RC6"
-val Specs2Version    = "4.8.0"
-val ScalaTestVersion = "3.2.0-M1"
+val ZioVersion       = "1.0.0-RC17"
+val ZioCatsVersion   = "2.0.0.0-RC10"
+val Specs2Version    = "4.8.1"
+val ScalaTestVersion = "3.0.8"
 
 resolvers ++= Seq(
   Resolver.sonatypeRepo("releases"),
