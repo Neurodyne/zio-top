@@ -1,44 +1,38 @@
-val ZioVersion       = "1.0.0-RC17"
-val ZioCatsVersion   = "2.0.0.0-RC10"
-val Specs2Version    = "4.8.1"
-val ScalaTestVersion = "3.0.8"
+import Versions._
 
 resolvers ++= Seq(
+  Resolver.mavenLocal,
   Resolver.sonatypeRepo("releases"),
   Resolver.sonatypeRepo("snapshots")
 )
 
+lazy val commonSettings = Seq(
+// Refine scalac params from tpolecat
+  scalacOptions --= Seq(
+    "-Xfatal-warnings"
+  )
+)
+
+lazy val zioDeps = libraryDependencies ++= Seq(
+  "dev.zio" %% "zio"          % zioVersion,
+  "dev.zio" %% "zio-test"     % zioVersion % "test",
+  "dev.zio" %% "zio-test-sbt" % zioVersion % "test"
+)
+
 lazy val root = (project in file("."))
   .settings(
-    organization := "ZIO",
-    name := "zio-top-project",
+    organization := "Neurodyne",
+    name := "zio-top",
     version := "0.0.1",
-    scalaVersion := "2.12.10",
+    scalaVersion := "2.13.1",
     maxErrors := 3,
-    libraryDependencies ++= Seq(
-      "dev.zio"       %% "zio"              % ZioVersion,
-      "dev.zio"       %% "zio-interop-cats" % ZioCatsVersion,
-      "dev.zio"       %% "zio-test"         % ZioVersion % "test",
-      "dev.zio"       %% "zio-test-sbt"     % ZioVersion % "test",
-      "org.specs2"    %% "specs2-core"      % Specs2Version % "test",
-      "org.scalactic" %% "scalactic"        % ScalaTestVersion,
-      "org.scalatest" %% "scalatest"        % ScalaTestVersion % "test"
-    )
+    commonSettings,
+    zioDeps,
+    testFrameworks := Seq(new TestFramework("zio.test.sbt.ZTestFramework"))
   )
-
-testFrameworks += Seq(new TestFramework("zio.test.sbt.ZTestFramework"))
-
-// Refine scalac params from tpolecat
-scalacOptions --= Seq(
-  "-Xfatal-warnings"
-)
-addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full)
 
 // Aliases
 addCommandAlias("rel", "reload")
 addCommandAlias("com", "all compile test:compile it:compile")
-addCommandAlias("lint", "; compile:scalafix --check ; test:scalafix --check")
 addCommandAlias("fix", "all compile:scalafix test:scalafix")
 addCommandAlias("fmt", "all scalafmtSbt scalafmtAll")
-addCommandAlias("chk", "all scalafmtSbtCheck scalafmtCheckAll")
-addCommandAlias("cov", "; clean; coverage; test; coverageReport")
