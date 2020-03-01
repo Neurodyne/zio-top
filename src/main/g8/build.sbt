@@ -13,6 +13,10 @@ lazy val commonSettings = Seq(
   )
 )
 
+lazy val catsDeps = libraryDependencies ++= Seq(
+  "org.typelevel" %% "cats-core" % catsVersion
+)
+
 lazy val zioDeps = libraryDependencies ++= Seq(
   "dev.zio" %% "zio"          % zioVersion,
   "dev.zio" %% "zio-test"     % zioVersion % "test",
