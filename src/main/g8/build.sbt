@@ -1,5 +1,3 @@
-import Versions._
-
 resolvers ++= Seq(
   Resolver.mavenLocal,
   Resolver.sonatypeRepo("releases"),
@@ -14,13 +12,14 @@ lazy val commonSettings = Seq(
 )
 
 lazy val catsDeps = libraryDependencies ++= Seq(
-  "org.typelevel" %% "cats-core" % catsVersion
+  "org.typelevel" %% "cats-core" % Version.cats
 )
 
 lazy val zioDeps = libraryDependencies ++= Seq(
-  "dev.zio" %% "zio"          % zioVersion,
-  "dev.zio" %% "zio-test"     % zioVersion % "test",
-  "dev.zio" %% "zio-test-sbt" % zioVersion % "test"
+  "dev.zio" %% "zio"              % Version.zio,
+  "dev.zio" %% "zio-test"         % Version.zio % "test",
+  "dev.zio" %% "zio-test-sbt"     % Version.zio % "test",
+  "dev.zio" %% "zio-interop-cats" % Version.zioInteropCats
 )
 
 lazy val root = (project in file("."))
