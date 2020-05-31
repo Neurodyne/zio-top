@@ -6,7 +6,7 @@ import zio.console.{ putStrLn }
 object Main extends App {
 
   def run(args: List[String]) =
-    myAppLogic.as(0)
+    myAppLogic.exitCode
 
   val myAppLogic =
     for {
