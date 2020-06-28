@@ -27,7 +27,8 @@ lazy val root = (project in file("."))
     organization := "Neurodyne",
     name := "top",
     version := "0.0.1",
-    scalaVersion := "2.13.2",
+    scalaVersion := "2.13.3",
+    crossScalaVersions := Seq("2.12.11", "2.13.3"),
     maxErrors := 3,
     commonSettings,
     zioDeps,
@@ -40,4 +41,4 @@ addCommandAlias("com", "all compile test:compile it:compile")
 addCommandAlias("fix", "all compile:scalafix test:scalafix")
 addCommandAlias("fmt", "all scalafmtSbt scalafmtAll")
 
-scalafixDependencies in ThisBuild += "com.nequissimus" %% "sort-imports" % "0.5.0"
+scalafixDependencies in ThisBuild += "com.nequissimus" %% "sort-imports" % "0.5.4"
