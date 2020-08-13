@@ -11,10 +11,6 @@ lazy val commonSettings = Seq(
   )
 )
 
-lazy val catsDeps = libraryDependencies ++= Seq(
-  "org.typelevel" %% "cats-core" % Version.cats
-)
-
 lazy val zioDeps = libraryDependencies ++= Seq(
   "dev.zio" %% "zio"              % Version.zio,
   "dev.zio" %% "zio-test"         % Version.zio % "test",
@@ -24,11 +20,11 @@ lazy val zioDeps = libraryDependencies ++= Seq(
 
 lazy val root = (project in file("."))
   .settings(
-    organization := "Neurodyne",
+    organization := "crew.hot",
     name := "top",
     version := "0.0.1",
     scalaVersion := "2.13.3",
-    crossScalaVersions := Seq("2.12.11", "2.13.3"),
+    crossScalaVersions := Seq("2.12.12", "2.13.3"),
     maxErrors := 3,
     commonSettings,
     zioDeps,
